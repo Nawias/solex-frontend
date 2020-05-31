@@ -13,7 +13,7 @@ export default class IndexCom extends Component {
             <p className="lead"> Twoje miejsce w internecie</p>
             <SearchBar />
             <p>lub</p>
-            <Button variant="secondary">Wystaw ogłoszenie</Button>
+            <Button variant="secondary" href="/nowe-ogloszenie">Wystaw ogłoszenie</Button>
           </Container>
         </Jumbotron>
         <Container>

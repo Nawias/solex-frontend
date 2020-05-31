@@ -24,3 +24,10 @@ div.solex-head {
 #konto-dropdown > * .svg-inline--fa {
   margin-right: 10%;
 }
+
+
+.flex-column-right{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
