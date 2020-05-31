@@ -15,9 +15,9 @@ import { Container } from "react-bootstrap";
 
 function App() {
   return (
-    <Container className="container-fluid">
-      <Head />
+    <div>
       <Router>
+        <Head />
         <Switch>
           <Route path="/">
             <Index />
@@ -30,7 +30,7 @@ function App() {
           </Route>
         </Switch>
       </Router>
-    </Container>
+    </div>
   );
 }
 

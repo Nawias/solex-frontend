@@ -19,7 +19,7 @@ export default class Konto extends Component {
   render() {
     return (
       <div className="row">
-        <Dropdown>
+        <Dropdown alignRight>
           <Dropdown.Toggle variant="light" id="konto-dropdown">
             <FAIcon icon={faUser} size="2x" /> Konto
             {this.renderDropdownMenu()}
