@@ -6,7 +6,7 @@ export default class Head extends Component {
   render() {
     return (
       <div className="solex-head">
-        <Image src="logo192.png" thumbnail></Image>
+        <Image src="solex-128.png"></Image>
         <Konto />
       </div>
     );

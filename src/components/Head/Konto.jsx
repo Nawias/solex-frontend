@@ -21,7 +21,7 @@ export default class Konto extends Component {
       <div className="row">
         <Dropdown>
           <Dropdown.Toggle variant="light" id="konto-dropdown">
-            <FAIcon icon={faUser} />
+            <FAIcon icon={faUser} size="2x" /> Konto
             {this.renderDropdownMenu()}
           </Dropdown.Toggle>
         </Dropdown>

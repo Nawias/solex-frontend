@@ -1,3 +1,6 @@
+body {
+  background-color: antiquewhite;
+}
 div.main-jumbo {
   background-color: bisque;
   text-align: center;
@@ -6,4 +9,17 @@ div.solex-head {
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
+  align-items: center;
+}
+
+#konto-dropdown {
+  display: flex;
+  font-size: 18px;
+  align-items: center;
+}
+#konto-dropdown > .svg-inline--fa {
+  margin-right: 10%;
+}
+#konto-dropdown > * .svg-inline--fa {
+  margin-right: 10%;
 }
