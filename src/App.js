@@ -4,6 +4,8 @@ import Search from "./components/Search";
 import Login from "./components/Login";
 import Head from "./components/Head";
 import Register from "./components/Register";
+import Create from "./components/Add/Create";
+import MyAdds from "./components/Add/MyAdds";
 import {
   BrowserRouter as Router,
   Switch,
@@ -31,6 +33,13 @@ function App() {
             <Register />
           </Route>
 
+          <Route path="/nowe-ogloszenie">
+            <Create />
+          </Route>
+
+          <Route path="/moje-ogloszenia">
+            <MyAdds />
+          </Route>
 
           <Route path="/search">
             <Search />
