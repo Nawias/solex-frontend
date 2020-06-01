@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {InputGroup, Button, FormControl, Row, Col, Form, FormGroup} from "react-bootstrap";
+import {Button, FormControl, Row, Col, Form, FormGroup} from "react-bootstrap";
 
 export default class Login extends Component {
     render() {

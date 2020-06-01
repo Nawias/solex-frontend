@@ -32,6 +32,11 @@ div.solex-head {
   align-items: flex-end;
 }
 
+.flex-space-between{
+  display: flex;
+  justify-content: space-between;
+}
+
 .flex-row-right{
   display: flex;
   justify-content: flex-end;
@@ -41,6 +46,11 @@ div.solex-head {
 
 .add-img{
   max-width: 50px;
+  height: auto;
+}
+
+.image-in-add{
+  max-width: 500px;
   height: auto;
 }
 
