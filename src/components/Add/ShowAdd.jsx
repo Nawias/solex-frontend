@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import {Button, Row, Col, Image, Container} from "react-bootstrap";
 import {FontAwesomeIcon as FAIcon} from "@fortawesome/react-fontawesome";
-import {faPencilAlt, faTimes, faExclamationTriangle, faEnvelope, faPhoneAlt,faAt} from "@fortawesome/free-solid-svg-icons";
+import { faExclamationTriangle, faEnvelope, faPhoneAlt,faAt} from "@fortawesome/free-solid-svg-icons";
 
 export default class MyAdds extends Component {
 
