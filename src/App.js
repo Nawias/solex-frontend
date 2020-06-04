@@ -4,6 +4,9 @@ import Search from "./components/Search";
 import Login from "./components/Login";
 import Head from "./components/Head";
 import Register from "./components/Register";
+import Create from "./components/Add/Create";
+import MyAdds from "./components/Add/MyAdds";
+import ShowAdd from "./components/Add/ShowAdd";
 import {
   BrowserRouter as Router,
   Switch,
@@ -15,6 +18,8 @@ import {
 import { Container } from "react-bootstrap";
 
 function App() {
+  document.title = "Solex - System ogłoszeń lokalnych";
+
   return (
     <div>
       <Router>
@@ -31,6 +36,17 @@ function App() {
             <Register />
           </Route>
 
+          <Route path="/nowe-ogloszenie">
+            <Create />
+          </Route>
+
+          <Route path="/moje-ogloszenia">
+            <MyAdds />
+          </Route>
+
+          <Route path="/ogłoszenie">
+            <ShowAdd />
+          </Route>
 
           <Route path="/search">
             <Search />
