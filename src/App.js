@@ -7,6 +7,10 @@ import Register from "./components/Register";
 import Create from "./components/Add/Create";
 import MyAdds from "./components/Add/MyAdds";
 import ShowAdd from "./components/Add/ShowAdd";
+import Panel from "./components/Admin/Panel";
+import New from "./components/Reports/New";
+import Check from "./components/Reports/Check";
+import Conversation from "./components/Conversation";
 import {
   BrowserRouter as Router,
   Switch,
@@ -16,6 +20,7 @@ import {
   useParams,
 } from "react-router-dom";
 import { Container } from "react-bootstrap";
+import NewAdds from "./components/Admin/NewAdds";
 
 function App() {
   document.title = "Solex - System ogłoszeń lokalnych";
@@ -46,6 +51,26 @@ function App() {
 
           <Route path="/ogłoszenie">
             <ShowAdd />
+          </Route>
+
+          <Route path="/nowe-zgloszenie">
+            <New title={"Laptop"} />
+          </Route>
+
+          <Route path="/sprawdz-zgloszenie">
+            <Check title={"Laptop"} />
+          </Route>
+
+          <Route path="/admin-panel">
+            <Panel active ='new' content={NewAdds} />
+          </Route>
+
+          <Route path="/admin-panel-reports">
+            <Panel active ='reports' content={NewAdds} />
+          </Route>
+
+          <Route path="/konwersacja">
+            <Conversation />
           </Route>
 
           <Route path="/search">
