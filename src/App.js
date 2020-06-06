@@ -62,21 +62,20 @@ function App() {
           </Route>
 
           <Route path="/admin-panel">
-            <Panel active ='new' content={NewAdds} />
+            <Panel active="new" content={NewAdds} />
           </Route>
 
           <Route path="/admin-panel-reports">
-            <Panel active ='reports' content={NewAdds} />
+            <Panel active="reports" content={NewAdds} />
           </Route>
 
           <Route path="/konwersacja">
             <Conversation />
           </Route>
 
-          <Route path="/search">
+          <Route path="/szukaj">
             <Search />
           </Route>
-
         </Switch>
       </Router>
     </div>
