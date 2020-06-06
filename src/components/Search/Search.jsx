@@ -8,7 +8,7 @@ class Search extends Component {
   };
   constructor(props) {
     super(props);
-    fetch("http://localhost:8080/api/public/szukaj?query=B5", {
+    fetch("http://localhost:8080/api/public/szukaj?" + props.location.search, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
