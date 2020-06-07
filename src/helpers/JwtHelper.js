@@ -18,3 +18,9 @@ export const setUser = (user) => {
 export const getRole = () => {
   return localStorage.getItem("role");
 };
+
+export const clearUserData = () => {
+  localStorage.removeItem("username");
+  localStorage.removeItem("role");
+  localStorage.removeItem("jwt-token");
+};
