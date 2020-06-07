@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import queryString from "query-string";
-
+import AddLi from "./AddLi";
+import {Row, Col} from "react-bootstrap";
 class Search extends Component {
   state = {
     searchResults: undefined,
@@ -39,15 +40,17 @@ class Search extends Component {
     } else if (!isLoaded) return <h2>Loading...</h2>;
     else {
       return (
-        <ul>
-          {searchResults.map((ad) => (
-            <li key={ad.title}>
-              <h3>{ad.title}</h3>
-              <p>{ad.description}</p>
-              <p>Telefon: {ad.phone}</p>
-            </li>
-          ))}
-        </ul>
+          <Row className="justify-content-center">
+            <Col xs={10}>
+
+                {searchResults.map((ad) => (
+                      <AddLi title={ad.title} phone={ad.phone} description={ad.description} href={ad.id} />
+
+                  ))}
+
+            </Col>
+          </Row>
+
       );
     }
 
