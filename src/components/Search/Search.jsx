@@ -1,35 +1,29 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
-import queryString from "query-string";
+import axios from "axios";
 
 class Search extends Component {
   state = {
     searchResults: undefined,
   };
-  constructor(props) {
-    super(props);
-    fetch("http://localhost:8080/api/public/szukaj" + props.location.search, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((res) => res.json())
-      .then(
-        (result) => {
-          console.log(result);
-          this.setState({
-            isLoaded: true,
-            searchResults: result,
-          });
-        },
-        (error) => {
-          this.setState({
-            isLoaded: true,
-            error,
-          });
-        }
-      );
+
+  componentDidMount() {
+    axios
+      .get(
+        "http://localhost:8080/api/public/szukaj" + this.props.location.search
+      )
+      .then((response) => {
+        this.setState({
+          isLoaded: true,
+          searchResults: response.data,
+        });
+      })
+      .catch((error) => {
+        this.setState({
+          isLoaded: true,
+          error,
+        });
+      });
   }
 
   render() {
