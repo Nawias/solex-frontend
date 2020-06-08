@@ -11,7 +11,7 @@ export default class MyAdds extends Component {
             <Link to={"/ogłoszenie?id="+this.props.href}  style={{ textDecoration: 'none',color: 'black' }}>
                 <Row className="my-3 border py-2">
                     <Col xs={2}>
-                        <Image src="solex-192.png" thumbnail fluid className={"add-img"} />
+                        <Image src={(this.props.photos[0] === undefined) ? "solex-192.png" : "http://localhost:8080/api/public/"+this.props.photos[0]} thumbnail fluid className={"add-img"} />
                     </Col>
 
                     <Col xs={7} className=" align-items-center align-content-stretch">
@@ -19,7 +19,7 @@ export default class MyAdds extends Component {
                   <b> {this.props.title}</b>
                     </span> <br/>
                         Telefon: {this.props.phone} <br/>
-                        {(this.props.description).substr(0,100)}...
+                        {(this.props.description).substr(0,50)}...
                     </Col>
 
                 </Row>

@@ -66,7 +66,7 @@ function App() {
 
           <Route path="/nowe-zgloszenie">
             <AuthGuardComponent roles={["ROLE_USER", "ROLE_ADMIN"]}>
-              <New title={"Laptop"} />
+              <New />
             </AuthGuardComponent>
           </Route>
           <Route path="/konwersacja">
