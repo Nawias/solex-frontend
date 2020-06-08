@@ -63,10 +63,12 @@ class Konto extends Component {
       case 0: //not logged in
         return (
           <Dropdown.Menu>
-            <Dropdown.Item>
-              <FAIcon icon={faUserPlus} fixedWidth />
-              Zarejestruj się
-            </Dropdown.Item>
+            <Link to="/register">
+              <Dropdown.Item as="button">
+                <FAIcon icon={faUserPlus} fixedWidth />
+                Zarejestruj się
+              </Dropdown.Item>
+            </Link>
             <Link to="/login">
               <Dropdown.Item as="button">
                 <FAIcon icon={faSignInAlt} fixedWidth />
@@ -79,10 +81,12 @@ class Konto extends Component {
         return (
           <Dropdown.Menu>
             <Dropdown.Header>Moje</Dropdown.Header>
-            <Dropdown.Item>
-              <FAIcon icon={faAd} fixedWidth />
-              Ogłoszenia
-            </Dropdown.Item>
+            <Link to="/moje-ogloszenia">
+              <Dropdown.Item as="button">
+                <FAIcon icon={faAd} fixedWidth />
+                Ogłoszenia
+              </Dropdown.Item>
+            </Link>
             <Dropdown.Item>
               <FAIcon icon={faEnvelope} fixedWidth />
               Wiadomości
@@ -102,10 +106,12 @@ class Konto extends Component {
         return (
           <Dropdown.Menu>
             <Dropdown.Header>Moje</Dropdown.Header>
-            <Dropdown.Item>
-              <FAIcon icon={faAd} fixedWidth />
-              Ogłoszenia
-            </Dropdown.Item>
+            <Link to="/moje-ogloszenia">
+              <Dropdown.Item as="button">
+                <FAIcon icon={faAd} fixedWidth />
+                Ogłoszenia
+              </Dropdown.Item>
+            </Link>
             <Dropdown.Item>
               <FAIcon icon={faEnvelope} fixedWidth />
               Wiadomości
@@ -114,10 +120,12 @@ class Konto extends Component {
               <FAIcon icon={faUserCog} fixedWidth />
               Ustawienia
             </Dropdown.Item>
-            <Dropdown.Item>
-              <FAIcon icon={faDesktop} fixedWidth />
-              Panel Administracyjny
-            </Dropdown.Item>
+            <Link to="admin-panel">
+              <Dropdown.Item as="button">
+                <FAIcon icon={faDesktop} fixedWidth />
+                Panel Administracyjny
+              </Dropdown.Item>
+            </Link>
             <Dropdown.Divider />
             <Dropdown.Item onClick={this.logOut}>
               <FAIcon icon={faSignOutAlt} fixedWidth />

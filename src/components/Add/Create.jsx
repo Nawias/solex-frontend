@@ -43,22 +43,22 @@ export default class Create extends Component {
     console.log("}");
 
     let model = {
-      id: 0,
       title: data.get("title"),
       description: data.get("description"),
       phone: data.get("phone"),
+      categoryId: 1,
     };
     let files = data.get("files");
 
     let formData = new FormData();
-    formData.append("model", model);
+    formData.append("model", JSON.stringify(model));
     formData.append("files", files);
 
     axiosInstance
       .post("nowe-ogloszenie", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
-          Authentication: getJWT(),
+          Authorization: getJWT(),
         },
       })
       .then((response) => {
