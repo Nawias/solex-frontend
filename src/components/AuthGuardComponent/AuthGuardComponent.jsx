@@ -26,12 +26,14 @@ class AuthGuardComponent extends Component {
     const role = getRole();
     if (role == this.state.role) return;
     if (roles.includes(role)) this.setState({ authenticated: true });
-    else this.setState({ authenticated: false });
+    else this.setState({ authenticated: "insufficent_permissions" });
   };
 
   render() {
     if (this.state.authenticated === undefined) return <h1>Loading...</h1>;
     else if (this.state.authenticated === true) return this.props.children;
+    else if (this.state.authenticated === "insufficent_permissions")
+      return <h1>Nie masz uprawnień do wyświetlenia tej strony</h1>;
     else return <Redirect to={"/login"} />;
   }
 }
