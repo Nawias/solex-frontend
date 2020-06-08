@@ -55,7 +55,7 @@ export default class Create extends Component {
     formData.append("files", files);
 
     axiosInstance
-      .post("http://localhost:8080/api/nowe-ogloszenie", formData, {
+      .post("nowe-ogloszenie", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
           Authentication: getJWT(),

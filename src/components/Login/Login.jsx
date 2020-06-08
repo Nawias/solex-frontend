@@ -8,7 +8,7 @@ import {
   FormGroup,
 } from "react-bootstrap";
 import { Link, Redirect } from "react-router-dom";
-import axios from "axios";
+import axiosInstance from "../../helpers/axiosInstance";
 import { setJWT, setUser } from "../../helpers/JwtHelper";
 
 export default class Login extends Component {
@@ -24,8 +24,8 @@ export default class Login extends Component {
   };
   handleSubmit = () => {
     const { username, password } = this.state;
-    axios
-      .post("http://localhost:8080/api/login", {
+    axiosInstance
+      .post("login", {
         username: username,
         password: password,
       })

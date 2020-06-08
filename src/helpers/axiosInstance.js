@@ -3,7 +3,7 @@ import { withRouter } from "react-router-dom";
 import { clearUserData } from "./JwtHelper";
 
 const axiosInstance = axios.create({
-  baseURL: process.env.API,
+  baseURL: "http://localhost:8080/api/",
 });
 
 axiosInstance.interceptors.response.use(

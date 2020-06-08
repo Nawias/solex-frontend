@@ -10,7 +10,7 @@ import {
   Alert,
 } from "react-bootstrap";
 import { withRouter, Redirect, Link } from "react-router-dom";
-import axios from "axios";
+import axiosInstance from "../../helpers/axiosInstance";
 
 class Register extends Component {
   state = {
@@ -68,8 +68,8 @@ class Register extends Component {
       this.setState({ error: "password_match" });
       return;
     }
-    axios
-      .post("http://localhost:8080/api/register", {
+    axiosInstance
+      .post("register", {
         username: username,
         password: password,
         email: email,
