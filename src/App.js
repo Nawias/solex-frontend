@@ -54,7 +54,7 @@ function App() {
           </Route>
 
           <Route path="/nowe-zgloszenie">
-            <New title={"Laptop"} />
+            <New  />
           </Route>
 
           <Route path="/sprawdz-zgloszenie">

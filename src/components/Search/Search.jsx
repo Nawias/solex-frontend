@@ -42,7 +42,9 @@ class Search extends Component {
                 title={ad.title}
                 phone={ad.phone}
                 description={ad.description}
+                id={ad.id}
                 href={ad.id}
+                photos = {JSON.parse(ad.photos)}
               />
             ))}
           </Col>
