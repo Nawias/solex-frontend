@@ -11,6 +11,9 @@ import {
   FormGroup,
   FormLabel,
 } from "react-bootstrap";
+import axiosInstance from "../../helpers/axiosInstance";
+import { getJWT } from "../../helpers/JwtHelper";
+import { Redirect } from "react-router-dom";
 
 const options = [
   { value: 1, label: "test" },
@@ -21,6 +24,7 @@ const options = [
 export default class Create extends Component {
   state = {
     selectedOption: null,
+    redirect: undefined,
   };
   handleChange = (selectedOption) => {
     this.setState({ selectedOption }, () =>
@@ -49,15 +53,24 @@ export default class Create extends Component {
     let formData = new FormData();
     formData.append("model", model);
     formData.append("files", files);
-    fetch("http://localhost:8080/api/nowe-ogloszenie", {
-      method: "POST",
-      mode: "no-cors",
-      body: formData,
-    });
+
+    axiosInstance
+      .post("http://localhost:8080/api/nowe-ogloszenie", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Authentication: getJWT(),
+        },
+      })
+      .then((response) => {
+        this.setState({ redirect: true });
+      });
   };
 
   render() {
-    const { selectedOption } = this.state;
+    const { selectedOption, redirect } = this.state;
+    if (redirect === true) {
+      return <Redirect to="/" />;
+    }
     return (
       <Row className="justify-content-center">
         <Col xs={10}>

@@ -35,7 +35,10 @@ class Konto extends Component {
 
   loadUser = () => {
     const jwt = getJWT();
-    if (!jwt || jwt === null || jwt === undefined) return;
+    if (!jwt || jwt === null || jwt === undefined) {
+      this.setDefaults();
+      return;
+    }
     const username = getUser();
     const role = getRole();
     if (username !== this.state.user || role !== this.state.role)
@@ -124,9 +127,14 @@ class Konto extends Component {
         );
     }
   };
+
+  setDefaults = () => {
+    this.setState({ role: 0, user: "Konto" });
+  };
+
   logOut = () => {
     clearUserData();
-    this.setState({ role: 0, user: "Konto" });
+    this.setDefaults();
   };
 }
 
