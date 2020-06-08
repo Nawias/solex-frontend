@@ -3,6 +3,7 @@ import {InputGroup, Button, FormControl, Row, Col, Form, FormGroup, FormLabel, C
 import {Link, withRouter} from "react-router-dom";
 
 import axios from "axios";
+import Loading from "../SimpleComponents/Loading";
 
 
  class New extends Component {
@@ -30,7 +31,7 @@ import axios from "axios";
 
     render() {
         if (this.state.title === undefined){
-            return <h1>Ładowanie..</h1>
+            return <Loading/>
         }
 
         return (
