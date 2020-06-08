@@ -11,6 +11,7 @@ import Panel from "./components/Admin/Panel";
 import New from "./components/Reports/New";
 import Check from "./components/Reports/Check";
 import Conversation from "./components/Conversation";
+import AuthGuardComponent from "./components/AuthGuardComponent";
 import {
   BrowserRouter as Router,
   Switch,
@@ -30,6 +31,7 @@ function App() {
       <Router>
         <Head />
         <Switch>
+          {/*Public routes */}
           <Route exact path="/">
             <Index />
           </Route>
@@ -41,40 +43,56 @@ function App() {
             <Register />
           </Route>
 
-          <Route path="/nowe-ogloszenie">
-            <Create />
-          </Route>
-
-          <Route path="/moje-ogloszenia">
-            <MyAdds />
-          </Route>
-
           <Route path="/ogłoszenie">
             <ShowAdd />
           </Route>
 
-          <Route path="/nowe-zgloszenie">
-            <New  />
+          <Route path="/szukaj">
+            <Search />
           </Route>
 
+          {/*User routes*/}
+          <Route path="/nowe-ogloszenie">
+            <AuthGuardComponent roles={["ROLE_USER", "ROLE_ADMIN"]}>
+              <Create />
+            </AuthGuardComponent>
+          </Route>
+
+          <Route path="/moje-ogloszenia">
+            <AuthGuardComponent roles={["ROLE_USER", "ROLE_ADMIN"]}>
+              <MyAdds />
+            </AuthGuardComponent>
+          </Route>
+
+          <Route path="/nowe-zgloszenie">
+            <AuthGuardComponent roles={["ROLE_USER", "ROLE_ADMIN"]}>
+              <New />
+            </AuthGuardComponent>
+          </Route>
+          <Route path="/konwersacja">
+            <AuthGuardComponent roles={["ROLE_USER", "ROLE_ADMIN"]}>
+              <Conversation />
+            </AuthGuardComponent>
+          </Route>
+
+          {/*Admin routes*/}
+
           <Route path="/sprawdz-zgloszenie">
-            <Check title={"Laptop"} />
+            <AuthGuardComponent roles={["ROLE_ADMIN"]}>
+              <Check title={"Laptop"} />
+            </AuthGuardComponent>
           </Route>
 
           <Route path="/admin-panel">
-            <Panel active="new" content={NewAdds} />
+            <AuthGuardComponent roles={["ROLE_ADMIN"]}>
+              <Panel active="new" content={NewAdds} />
+            </AuthGuardComponent>
           </Route>
 
           <Route path="/admin-panel-reports">
-            <Panel active="reports" content={NewAdds} />
-          </Route>
-
-          <Route path="/konwersacja">
-            <Conversation />
-          </Route>
-
-          <Route path="/szukaj">
-            <Search />
+            <AuthGuardComponent roles={["ROLE_ADMIN"]}>
+              <Panel active="reports" content={NewAdds} />
+            </AuthGuardComponent>
           </Route>
         </Switch>
       </Router>

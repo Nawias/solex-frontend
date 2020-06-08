@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
-import axios from "axios";
+import axiosInstance from "../../helpers/axiosInstance";
 import AddLi from "./AddLi";
 import { Row, Col } from "react-bootstrap";
 import Loading from "../SimpleComponents/Loading";
@@ -11,10 +11,8 @@ class Search extends Component {
   };
 
   componentDidMount() {
-    axios
-      .get(
-        "http://localhost:8080/api/public/szukaj" + this.props.location.search
-      )
+    axiosInstance
+      .get("public/szukaj" + this.props.location.search)
       .then((response) => {
         this.setState({
           isLoaded: true,
@@ -45,7 +43,7 @@ class Search extends Component {
                 description={ad.description}
                 id={ad.id}
                 href={ad.id}
-                photos = {JSON.parse(ad.photos)}
+                photos={JSON.parse(ad.photos)}
               />
             ))}
           </Col>

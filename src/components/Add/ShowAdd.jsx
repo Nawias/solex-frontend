@@ -1,29 +1,34 @@
+
 import React, {Component} from "react";
 import {Button, Row, Col, Image, Container, Carousel, Spinner} from "react-bootstrap";
 import {FontAwesomeIcon as FAIcon} from "@fortawesome/react-fontawesome";
 import {
-    faExclamationTriangle,
-    faEnvelope,
-    faPhoneAlt,
-    faAt,
+  faExclamationTriangle,
+  faEnvelope,
+  faPhoneAlt,
+  faAt,
 } from "@fortawesome/free-solid-svg-icons";
-import {Link, withRouter} from "react-router-dom";
-import axios from "axios";
+
+import { Link, withRouter } from "react-router-dom";
+import axiosInstance from "../../helpers/axiosInstance";
 import Loading from "../SimpleComponents/Loading";
 
+
 class ShowAdd extends Component {
-    state = {
-        title: undefined,
-        description: undefined,
-        email: undefined,
-        phone: undefined,
-        photosUrl: [],
-    }
+  state = {
+    title: undefined,
+    description: undefined,
+    email: undefined,
+    phone: undefined,
+    photosUrl: [],
+  };
+
+
 
     componentDidMount() {
 
         let photosurl = [];
-        axios.get("http://localhost:8080/api/public/ogloszenie" + this.props.location.search)
+        axiosInstance.get("/public/ogloszenie" + this.props.location.search)
             .then((response) => {
 
                 photosurl = JSON.parse(response.data.photos);

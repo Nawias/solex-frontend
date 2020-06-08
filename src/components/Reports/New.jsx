@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import {InputGroup, Button, FormControl, Row, Col, Form, FormGroup, FormLabel, Container} from "react-bootstrap";
 import {Link, withRouter} from "react-router-dom";
 
-import axios from "axios";
+import axiosInstance from "../../helpers/axiosInstance";
 import Loading from "../SimpleComponents/Loading";
 
 
@@ -14,7 +14,7 @@ import Loading from "../SimpleComponents/Loading";
     componentDidMount() {
 
 
-        axios.get("http://localhost:8080/api/public/ogloszenie" + this.props.location.search)
+        axiosInstance.get("public/ogloszenie" + this.props.location.search)
             .then((response) => {
 
                 this.setState({
@@ -67,4 +67,4 @@ import Loading from "../SimpleComponents/Loading";
     }
 }
 
-export default withRouter(New)
+export default withRouter(New);
