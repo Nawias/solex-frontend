@@ -2,18 +2,43 @@ import React, { Component } from "react";
 import { Row, Col, Card } from "react-bootstrap";
 import { FontAwesomeIcon as FAIcon } from "@fortawesome/react-fontawesome";
 import { faArrowCircleRight } from "@fortawesome/free-solid-svg-icons";
+import Loading from "../SimpleComponents/Loading";
+import axiosInstance, { baseURL } from "../../helpers/axiosInstance";
+import { Link } from "react-router-dom";
+
 class Popularne extends Component {
-  state = { cards: [1, 2, 3, 4] };
+  state = { cards: undefined };
+
+  componentDidMount() {
+    axiosInstance.get("public/szukaj?query=").then((response) => {
+      let cards = [];
+      for (let i = 0; i < 4; i++) {
+        if (response.data[i] !== undefined) cards.push(response.data[i]);
+      }
+      this.setState({ cards: cards });
+    });
+  }
+
   render() {
+    if (this.state.cards === undefined) return <Loading />;
     return (
       <div>
         <h3>Popularne dzisiaj</h3>
         <Row md="5" style={{ alignItems: "center" }}>
           {this.state.cards.map((card) => (
-            <Karta card={card} />
+            <Karta
+              id={card.id}
+              title={card.title}
+              photos={JSON.parse(card.photos)}
+            />
           ))}
           <Col>
-            <FAIcon icon={faArrowCircleRight} size="5x" />
+            <Link
+              to="/szukaj"
+              style={{ textDecoration: "none", color: "#3e3f3a" }}
+            >
+              <FAIcon icon={faArrowCircleRight} size="5x" />
+            </Link>
           </Col>
         </Row>
       </div>
@@ -25,12 +50,24 @@ class Karta extends Component {
   render = () => {
     return (
       <div style={{ padding: "5px" }}>
-        <Card>
-          <Card.Img variant="top" src="solex-192.png" />
-          <Card.Body>
-            <Card.Text>Samochód: {this.props.card}</Card.Text>
-          </Card.Body>
-        </Card>
+        <Link
+          to={"/ogłoszenie?id=" + this.props.id}
+          style={{ textDecoration: "none", color: "black" }}
+        >
+          <Card>
+            <Card.Img
+              variant="top"
+              src={
+                this.props.photos[0] === undefined
+                  ? "solex-192.png"
+                  : baseURL + "public/" + this.props.photos[0]
+              }
+            />
+            <Card.Body>
+              <Card.Text>{this.props.title}</Card.Text>
+            </Card.Body>
+          </Card>
+        </Link>
       </div>
     );
   };
