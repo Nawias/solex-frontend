@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { withRouter, Redirect } from "react-router-dom";
 import { getJWT, getRole } from "../../helpers/JwtHelper";
+import Loading from "../SimpleComponents/Loading";
+import Unauthorized from "../SimpleComponents/Unauthorized";
 
 class AuthGuardComponent extends Component {
   constructor(props) {
@@ -30,10 +32,10 @@ class AuthGuardComponent extends Component {
   };
 
   render() {
-    if (this.state.authenticated === undefined) return <h1>Loading...</h1>;
+    if (this.state.authenticated === undefined) return <Loading />;
     else if (this.state.authenticated === true) return this.props.children;
     else if (this.state.authenticated === "insufficent_permissions")
-      return <h1>Nie masz uprawnień do wyświetlenia tej strony</h1>;
+      return <Unauthorized />;
     else return <Redirect to={"/login"} />;
   }
 }
