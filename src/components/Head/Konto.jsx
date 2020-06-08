@@ -38,7 +38,8 @@ class Konto extends Component {
     if (!jwt || jwt === null || jwt === undefined) return;
     const username = getUser();
     const role = getRole();
-    this.setState({ role: role, user: username });
+    if (username !== this.state.user || role !== this.state.role)
+      this.setState({ role: role, user: username });
   };
 
   render() {

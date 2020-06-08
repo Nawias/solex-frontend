@@ -9,6 +9,14 @@ class AuthGuardComponent extends Component {
   }
 
   componentDidMount() {
+    this.listener = setInterval(() => this.loadUser(), 500);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.listener);
+  }
+
+  loadUser = () => {
     const { roles } = this.props;
     const jwt = getJWT();
     if (!jwt) {
@@ -16,9 +24,10 @@ class AuthGuardComponent extends Component {
       return;
     }
     const role = getRole();
+    if (role == this.state.role) return;
     if (roles.includes(role)) this.setState({ authenticated: true });
     else this.setState({ authenticated: false });
-  }
+  };
 
   render() {
     if (this.state.authenticated === undefined) return <h1>Loading...</h1>;
