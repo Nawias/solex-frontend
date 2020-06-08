@@ -1,13 +1,44 @@
 import React, {Component} from "react";
 import {InputGroup, Button, FormControl, Row, Col, Form, FormGroup, FormLabel, Container} from "react-bootstrap";
+import {Link, withRouter} from "react-router-dom";
 
-export default class Create extends Component {
+import axiosInstance from "../../helpers/axiosInstance";
+import Loading from "../SimpleComponents/Loading";
+
+
+ class New extends Component {
+    state={
+        title: undefined
+    }
+
+    componentDidMount() {
+
+
+        axiosInstance.get("public/ogloszenie" + this.props.location.search)
+            .then((response) => {
+
+                this.setState({
+                    title: response.data.title,
+
+                });
+
+            })
+            .catch((error) => {
+                console.log(error)
+
+            });
+    }
+
     render() {
+        if (this.state.title === undefined){
+            return <Loading/>
+        }
+
         return (
             <Container>
                 <Row className="justify-content-center">
                     <Col xs={10} className={"border-bottom"}>
-                        <h4>Złoszenie dot. "{this.props.title}"</h4>
+                        <h4>Złoszenie dot. "{this.state.title}"</h4>
                     </Col>
                 </Row>
 
@@ -35,3 +66,5 @@ export default class Create extends Component {
         );
     }
 }
+
+export default withRouter(New);
