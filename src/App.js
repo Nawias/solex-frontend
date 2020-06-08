@@ -52,37 +52,48 @@ function App() {
           </Route>
 
           {/*User routes*/}
-          <AuthGuardComponent roles={["ROLE_USER", "ROLE_ADMIN"]}>
-            <Route path="/nowe-ogloszenie">
+          <Route path="/nowe-ogloszenie">
+            <AuthGuardComponent roles={["ROLE_USER", "ROLE_ADMIN"]}>
               <Create />
-            </Route>
+            </AuthGuardComponent>
+          </Route>
 
-            <Route path="/moje-ogloszenia">
+          <Route path="/moje-ogloszenia">
+            <AuthGuardComponent roles={["ROLE_USER", "ROLE_ADMIN"]}>
               <MyAdds />
-            </Route>
+            </AuthGuardComponent>
+          </Route>
 
-            <Route path="/nowe-zgloszenie">
+          <Route path="/nowe-zgloszenie">
+            <AuthGuardComponent roles={["ROLE_USER", "ROLE_ADMIN"]}>
               <New title={"Laptop"} />
-            </Route>
-            <Route path="/konwersacja">
+            </AuthGuardComponent>
+          </Route>
+          <Route path="/konwersacja">
+            <AuthGuardComponent roles={["ROLE_USER", "ROLE_ADMIN"]}>
               <Conversation />
-            </Route>
-          </AuthGuardComponent>
+            </AuthGuardComponent>
+          </Route>
 
           {/*Admin routes*/}
-          <AuthGuardComponent roles={["ROLE_ADMIN"]}>
-            <Route path="/sprawdz-zgloszenie">
+
+          <Route path="/sprawdz-zgloszenie">
+            <AuthGuardComponent roles={["ROLE_ADMIN"]}>
               <Check title={"Laptop"} />
-            </Route>
+            </AuthGuardComponent>
+          </Route>
 
-            <Route path="/admin-panel">
+          <Route path="/admin-panel">
+            <AuthGuardComponent roles={["ROLE_ADMIN"]}>
               <Panel active="new" content={NewAdds} />
-            </Route>
+            </AuthGuardComponent>
+          </Route>
 
-            <Route path="/admin-panel-reports">
+          <Route path="/admin-panel-reports">
+            <AuthGuardComponent roles={["ROLE_ADMIN"]}>
               <Panel active="reports" content={NewAdds} />
-            </Route>
-          </AuthGuardComponent>
+            </AuthGuardComponent>
+          </Route>
         </Switch>
       </Router>
     </div>

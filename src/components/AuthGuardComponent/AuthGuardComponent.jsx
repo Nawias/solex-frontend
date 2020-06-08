@@ -22,7 +22,7 @@ class AuthGuardComponent extends Component {
 
   render() {
     if (this.state.authenticated === undefined) return <h1>Loading...</h1>;
-    else if (this.state.authenticated) return this.props.children;
+    else if (this.state.authenticated === true) return this.props.children;
     else return <Redirect to={"/login"} />;
   }
 }
