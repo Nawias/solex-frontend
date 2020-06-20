@@ -58,7 +58,7 @@ export default class Create extends Component {
             title: data.get("title"),
             description: data.get("description"),
             phone: data.get("phone"),
-            categoryId: 1,
+            categoryId: this.state.selectedOption.value,
         };
 
         let formData = new FormData();
@@ -80,6 +80,13 @@ export default class Create extends Component {
             });
     };
 
+    showAlert = (e) => {
+        if (this.state.selectedOption === null) {
+            alert("Proszę wybrać kategorię.");
+            e.preventDefault();
+        }
+    };
+
     render() {
         const {selectedOption, redirect} = this.state;
         if (redirect === true) {
@@ -97,24 +104,25 @@ export default class Create extends Component {
                 <Col xs={9} className="">
                     <form action="#" onSubmit={this.handleSubmit}>
                         <Form.Group>
-                            <Form.Label>Tytuł ogłoszenia</Form.Label>
-                            <FormControl type="text" name="title"/>
+                            <Form.Label>Tytuł ogłoszenia <span className={"required"} title={"Pole wymagane"}>*</span></Form.Label>
+                            <FormControl type="text" name="title" />
                         </Form.Group>
 
                         <Form.Group>
-                            <Form.Label>Kategoria</Form.Label>
+                            <Form.Label>Kategoria <span className={"required"} title={"Pole wymagane"}>*</span></Form.Label>
 
                             <Select
                                 name="categoryId"
                                 value={selectedOption}
                                 onChange={this.handleChange}
                                 options={this.state.options}
+
                             />
                         </Form.Group>
 
                         <Form.Group>
-                            <Form.Label>Opis</Form.Label>
-                            <FormControl as="textarea" name="description" rows={7}/>
+                            <Form.Label>Opis <span className={"required"} title={"Pole wymagane"}>*</span></Form.Label>
+                            <FormControl as="textarea" name="description" rows={7} />
                         </Form.Group>
 
                         <Form.Group>
@@ -133,8 +141,8 @@ export default class Create extends Component {
                         </Form.Group>
 
                         <Form.Group>
-                            <Form.Label>Lokalizacja</Form.Label>
-                            <FormControl type="text" name="location"/>
+                            <Form.Label>Lokalizacja <span className={"required"} title={"Pole wymagane"}>*</span></Form.Label>
+                            <FormControl type="text" name="location" />
                         </Form.Group>
 
                         <Form.Group>
@@ -147,6 +155,8 @@ export default class Create extends Component {
                                 type="submit"
                                 className="btn-secondary"
                                 value="Dodaj"
+                                onClick={this.showAlert}
+                                /*   disabled={(this.state.selectedOption === null) ? 'diabled' : ''}*/
                             />
                         </Form.Group>
                     </form>

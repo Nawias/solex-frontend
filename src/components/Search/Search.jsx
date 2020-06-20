@@ -2,9 +2,10 @@ import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import axiosInstance from "../../helpers/axiosInstance";
 import AddLi from "./AddLi";
-import { Row, Col } from "react-bootstrap";
+import {Row, Col, Container} from "react-bootstrap";
 import Loading from "../SimpleComponents/Loading";
-
+import NoAds from "../SimpleComponents/NoAds";
+import Filters from "./Filters";
 class Search extends Component {
   state = {
     searchResults: undefined,
@@ -34,9 +35,16 @@ class Search extends Component {
     } else if (!isLoaded) return <Loading/>;
     else {
       return (
+          <Container  >
+          <Filters />
         <Row className="justify-content-center">
           <Col xs={10}>
-            {searchResults.map((ad) => (
+
+            {
+
+              (searchResults.length <= 0) ? <NoAds/> :
+
+              searchResults.map((ad) => (
               <AddLi
                 title={ad.title}
                 phone={ad.phone}
@@ -48,10 +56,11 @@ class Search extends Component {
             ))}
           </Col>
         </Row>
+          </Container>
       );
     }
 
-    return <div></div>;
+    return <div><NoAds/></div>;
   }
 }
 
