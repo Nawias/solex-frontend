@@ -16,17 +16,57 @@ import {
   faAt,
 } from "@fortawesome/free-solid-svg-icons";
 
-import { Link, withRouter } from "react-router-dom";
+import { Link, withRouter, Redirect } from "react-router-dom";
 import axiosInstance from "../../helpers/axiosInstance";
 import Loading from "../SimpleComponents/Loading";
 import { baseURL } from "../../helpers/axiosInstance";
+import CloseButton from "./CloseButton";
+
+function StatusBadge(props) {
+  switch (props.status) {
+    case "OPEN":
+      return "";
+    case "PENDING":
+      return (
+        <h3
+          style={{
+            textAlign: "center",
+            color: "#fff",
+            border: "1px solid #222",
+            backgroundColor: "#666",
+            padding: "10px 5px",
+          }}
+        >
+          To ogłoszenie nie zostało jeszcze zatwierdzone
+        </h3>
+      );
+    case "CLOSED":
+      return (
+        <h3
+          style={{
+            textAlign: "center",
+            color: "#fff",
+            border: "1px solid #222",
+            backgroundColor: "#666",
+            padding: "10px 5px",
+          }}
+        >
+          To ogłoszenie zostało zamknięte
+        </h3>
+      );
+    default:
+      break;
+  }
+}
 
 class ShowAdd extends Component {
   state = {
+    id: undefined,
     title: undefined,
     description: undefined,
     email: undefined,
     phone: undefined,
+    status: undefined,
     photosUrl: [],
   };
 
@@ -37,10 +77,13 @@ class ShowAdd extends Component {
       .then((response) => {
         photosurl = JSON.parse(response.data.photos);
         this.setState({
+          id: response.data.id,
+          user: response.data.user,
           title: response.data.title,
           description: response.data.description,
           phone: response.data.phone,
           email: response.data.user.email,
+          status: response.data.status,
           photosUrl: photosurl,
         });
       })
@@ -90,6 +133,7 @@ class ShowAdd extends Component {
       <Container>
         <Row className="justify-content-center">
           <Col xs={10} className={"border-bottom mb-2"}>
+            <StatusBadge status={this.state.status} />
             <h4>{this.state.title}</h4>
           </Col>
         </Row>
@@ -103,10 +147,16 @@ class ShowAdd extends Component {
         <Row className="justify-content-center">
           <Col xs={10} className="flex-space-between border-bottom mb-2">
             <div className={"h4"}>Opis</div>
-            <div className={this.props.hideReport ? "hide" : ""}>
+            <div
+              className={
+                this.props.hideReport || this.state.status == "CLOSED"
+                  ? "hide"
+                  : ""
+              }
+            >
+              <CloseButton id={this.state.id} user={this.state.user} />
               <Link to={"/nowe-zgloszenie" + this.props.location.search}>
                 <Button variant={"secondary"}>
-                  {" "}
                   <FAIcon icon={faExclamationTriangle} /> Zgłoś
                 </Button>
               </Link>
@@ -126,7 +176,6 @@ class ShowAdd extends Component {
             </div>
             <div>
               <Button variant={"secondary"}>
-                {" "}
                 <FAIcon icon={faEnvelope} /> Napisz wiadomość
               </Button>
             </div>
@@ -136,5 +185,4 @@ class ShowAdd extends Component {
     );
   }
 }
-
 export default withRouter(ShowAdd);
