@@ -1,14 +1,15 @@
+
 import React, {Component} from "react";
 import {Button, Row, Col, Image, Container, Carousel, Spinner} from "react-bootstrap";
 import {FontAwesomeIcon as FAIcon} from "@fortawesome/react-fontawesome";
 import {
-    faExclamationTriangle,
-    faEnvelope,
-    faPhoneAlt,
-    faAt,
+  faExclamationTriangle,
+  faEnvelope,
+  faPhoneAlt,
+  faAt,
 } from "@fortawesome/free-solid-svg-icons";
 
-import {Link, withRouter} from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import axiosInstance from "../../helpers/axiosInstance";
 import Loading from "../SimpleComponents/Loading";
 

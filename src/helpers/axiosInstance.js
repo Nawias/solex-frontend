@@ -2,8 +2,10 @@ import axios from "axios";
 import { withRouter } from "react-router-dom";
 import { clearUserData } from "./JwtHelper";
 
+export const baseURL = "http://localhost:8080/api/";
+
 const axiosInstance = axios.create({
-  baseURL: "http://localhost:8080/api/",
+  baseURL: baseURL,
 });
 
 axiosInstance.interceptors.response.use(
@@ -20,5 +22,3 @@ axiosInstance.interceptors.response.use(
 );
 
 export default withRouter(axiosInstance);
-
-export const baseURL = "http://localhost:8080/api/";
