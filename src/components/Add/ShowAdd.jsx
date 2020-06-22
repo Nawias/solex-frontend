@@ -6,11 +6,13 @@ import {
   faEnvelope,
   faPhoneAlt,
   faAt,
+  faTimes,
 } from "@fortawesome/free-solid-svg-icons";
 
 import { Link, withRouter } from "react-router-dom";
-import axiosInstance from "../../helpers/axiosInstance";
+import axiosInstance, { baseURL } from "../../helpers/axiosInstance";
 import Loading from "../SimpleComponents/Loading";
+import { getRole, getJWT, getUser } from "../../helpers/JwtHelper";
 
 function StatusBadge(props) {
   switch (props.status) {
@@ -107,7 +109,7 @@ class ShowAdd extends Component {
             <Carousel.Item>
               <img
                 className={" d-block mx-auto my-auto carusel-img"}
-                src={"http://localhost:8080/api/public/" + item}
+                src={baseURL + "public/" + item}
               />
             </Carousel.Item>
           ))}
@@ -147,7 +149,37 @@ class ShowAdd extends Component {
       }
     }
   };
-
+  onCloseAd = () => {
+    axiosInstance
+      .patch(
+        "close-ad",
+        { id: this.state.id },
+        {
+          headers: {
+            Accept: "*/*",
+            Authorization: getJWT(),
+          },
+        }
+      )
+      .then((response) => {
+        if (response.status == 200) this.setState({ status: "CLOSED" });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+  renderCloseButton = () => {
+    if (
+      this.state.status != "CLOSED" &&
+      (getRole() == "ROLE_ADMIN" || getUser() == this.state.user.username)
+    ) {
+      return (
+        <Button onClick={this.onCloseAd} variant={"secondary"}>
+          <FAIcon icon={faTimes} /> Zamknij
+        </Button>
+      );
+    } else return "";
+  };
   render() {
     if (this.state.title === undefined) {
       return <Loading />;
@@ -172,12 +204,19 @@ class ShowAdd extends Component {
         <Row className="justify-content-center">
           <Col xs={10} className="flex-space-between border-bottom mb-2">
             <div className={"h4"}>Opis</div>
-            <div className={this.props.hideReport ? "hide" : ""}>
+            <div
+              className={
+                this.props.hideReport || this.state.status == "CLOSED"
+                  ? "hide"
+                  : ""
+              }
+            >
               <Link to={"/nowe-zgloszenie" + this.props.location.search}>
                 <Button variant={"secondary"}>
                   <FAIcon icon={faExclamationTriangle} /> Zgłoś
                 </Button>
               </Link>
+              {this.renderCloseButton()}
             </div>
           </Col>
         </Row>

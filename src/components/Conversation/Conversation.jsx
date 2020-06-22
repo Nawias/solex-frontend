@@ -29,18 +29,17 @@ export default class Conversation extends Component {
               position={"r"}
               message={"dzień dobyry, czy wiadomości wyświetlają się dobrze?"}
             />
-            <MessageBox message={"to jest bardzo dobre gówno, sprawdzaj"} />
+            <MessageBox message={"Dzień dobry, wiadomości wyświetlają się bardzo dobrze!"} />
             <MessageBox
               message={
-                "test bardzo długiej wiadomości, ale takiej innej niż lorem ipsum bo mi się nie chce," +
-                " jeszcze trochę za krótko, ale raczej będzie okej "
+                "Bardzo mnie cieszy ten widok, wielka szkoda że nie udało nam się zaimplementować konwersacji i te wiadomości są wpisane na sztywno w kodzie"
               }
             />
             <MessageBox
               position={"r"}
-              message={"no dobra, wygląda na to że wszystko działa"}
+              message={"Wielka szkoda, lecz widok konwersacji bardzo ładny. Pozadrawiam"}
             />
-            <MessageBox message={"pozdrawiam cieplutko"} />
+            <MessageBox message={"Dziękuję i pozdrawiam cieplutko :)"} />
           </Row>
         </Row>
         <Row>

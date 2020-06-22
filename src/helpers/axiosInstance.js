@@ -2,7 +2,7 @@ import axios from "axios";
 import { withRouter } from "react-router-dom";
 import { clearUserData } from "./JwtHelper";
 
-export const baseURL = "http://localhost:8080/api/";
+export const baseURL = "http://solex.tk:8080/api/";
 
 const axiosInstance = axios.create({
   baseURL: baseURL,

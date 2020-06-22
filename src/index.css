@@ -43,7 +43,6 @@ div.solex-head {
 }
 
 .add-img {
-  max-width: 50px;
   height: auto;
 }
 
@@ -106,17 +105,16 @@ div.solex-head {
   width: 100%;
 }
 
-.black-link{
+.black-link {
   color: black;
   text-decoration: none;
 }
 
-.black-link:hover{
+.black-link:hover {
   text-decoration: none;
-
 }
 
-.required{
+.required {
   color: red;
   cursor: pointer;
 }
